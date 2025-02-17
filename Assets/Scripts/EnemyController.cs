@@ -5,39 +5,45 @@ using System.Reflection.Emit;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] Mover mover;
     [SerializeField] Detector detector;
     [SerializeField] EnemyBehaviour enemyBehaviour;
-    [SerializeField] HealthSystem healthSystem;
-    [SerializeField] CharacterController controller;
+    [SerializeField] EnemyAttackBehaviour attackBehaviour;
+    [SerializeField] HealthSystem healthSystem; 
 
+    [Header("Debug values")]
+    [SerializeField] EnemyState enemyState;
+    CharacterController controller;
     Vector2 direction;
     Transform target;
     private void Awake()
     {
+        controller = GetComponent<CharacterController>();
         mover.Init(controller);
+        detector.Init(controller);
+        enemyBehaviour.Init(controller, attackBehaviour);
     }
     private void Update()
     {
         target = detector.GetInfo();
+        if (target == null)
+            Debug.Log("No Target");
+        else
+            Debug.Log("Player is in range");
         EnemyAction enemyAction = enemyBehaviour.GetActions(target); //attack, move
         if (enemyAction.actionType == EnemyActionType.Move)
         {
             mover.Move(enemyAction.MovePosition);
         }
-        mover.Move(direction);
+
+        //debug
+        enemyState = enemyBehaviour.State;
     }
 }
-public enum DetectorType
-{
-    SimpleRadius,
-    HearingRadius,
-    VisionRadius
-}
-
-public class AttackBehaviour : ScriptableObject
+public class EnemyAttackBehaviour : ScriptableObject
 {
     [SerializeField] internal float attackRange = 1f;
     internal void Attack()

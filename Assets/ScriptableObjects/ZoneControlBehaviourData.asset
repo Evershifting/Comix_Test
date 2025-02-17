@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2274ea0c15584b644ab77c26ec7888a2, type: 3}
-  m_Name: SimpleMoverSlow
+  m_Script: {fileID: 11500000, guid: 603f05ed0147e4b4ba17b6aa83bfd36a, type: 3}
+  m_Name: ZoneControlBehaviourData
   m_EditorClassIdentifier: 
-  speed: 1
+  investigationRange: 6
+  chaseRange: 4
+  returnRange: 10
+  patrolPointDetectionRange: 0.01

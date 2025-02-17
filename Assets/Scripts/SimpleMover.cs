@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SimpleMover", menuName = "ActorsComponents/Movers/SimpleMover")]
+[CreateAssetMenu(fileName = "SimpleMover", menuName = "Components/Movers/SimpleMover")]
 //moves character with SimpleMove method left or right
 internal class SimpleMover : Mover
 {
