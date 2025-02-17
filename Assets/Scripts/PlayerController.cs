@@ -6,12 +6,11 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] SimpleMover mover;
+    [SerializeField] Mover mover;
 
     CharacterController controller;
 
-    //cache
-    Vector3 forward;
+
     void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -27,8 +26,7 @@ public class PlayerController : MonoBehaviour
             mover.Jump(false);
         }
 
-        // Move forward / backward
-        forward = transform.TransformDirection(Vector3.right);
-        mover.Move(forward * Input.GetAxis("Horizontal")); 
+        // Move left/right
+        mover.Move(transform.position + transform.TransformDirection(Vector3.right) * Input.GetAxis("Horizontal"));
     }
 }
