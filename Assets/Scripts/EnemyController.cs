@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
 using System.Reflection.Emit;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -10,54 +6,56 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] Mover mover;
     [SerializeField] Detector detector;
-    [SerializeField] EnemyBehaviour enemyBehaviour;
-    [SerializeField] EnemyAttackBehaviour attackBehaviour;
-    [SerializeField] HealthSystem healthSystem; 
 
     [Header("Debug values")]
     [SerializeField] EnemyState enemyState;
+    
+    //refs
     CharacterController controller;
-    Vector2 direction;
+    EnemyBehaviour enemyBehaviour;
+    HealthSystem healthSystem;
+    EnemyAttackBehaviour attackBehaviour;
+    Animator animator;
+
+    //cache
     Transform target;
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
-        mover.Init(controller);
+        enemyBehaviour = GetComponent<EnemyBehaviour>();
+        healthSystem = GetComponent<HealthSystem>();
+        attackBehaviour = GetComponent<EnemyAttackBehaviour>();
+
+        animator = GetComponent<Animator>();
+
+        mover.Init(controller, animator);
         detector.Init(controller);
         enemyBehaviour.Init(controller, attackBehaviour);
     }
     private void Update()
     {
         target = detector.GetInfo();
-        if (target == null)
-            Debug.Log("No Target");
-        else
-            Debug.Log("Player is in range");
         EnemyAction enemyAction = enemyBehaviour.GetActions(target); //attack, move
-        if (enemyAction.actionType == EnemyActionType.Move)
+        switch (enemyAction.actionType)
         {
-            mover.Move(enemyAction.MovePosition);
+            case EnemyActionType.Move:
+                mover.Move(enemyAction.MovePosition);
+                break;
+            case EnemyActionType.Attack:
+                break;
+            case EnemyActionType.Idle:
+                break;
+            case EnemyActionType.None:
+                break;
+            default:
+                break;
         }
 
         //debug
         enemyState = enemyBehaviour.State;
     }
 }
-public class EnemyAttackBehaviour : ScriptableObject
-{
-    [SerializeField] internal float attackRange = 1f;
-    internal void Attack()
-    {
-        throw new NotImplementedException();
-    }
-}
 
-public enum AttackType
-{
-    Melee,
-    Ranged,
-    Suicide
-}
 
 public struct EnemyAction
 {
@@ -68,5 +66,6 @@ public enum EnemyActionType
 {
     Move,
     Attack,
-    Idle
+    Idle,
+    None
 }
