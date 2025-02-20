@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour, IAttackAnimationListener
 {
     [SerializeField] Mover mover;
     #region it should be a weapon, that references damage collider and all the other stuff, but implementing weapon system is way too out of the scope even for me)
-    [Space]
+    [Space, Header("Weapon")]
     [SerializeField] DamageCollider damageCollider;
     [SerializeField] DamageStruct damageStruct;
     [SerializeField] List<DamageableTargetType> damageableTargetTypes = new List<DamageableTargetType> { DamageableTargetType.Enemy };
@@ -19,8 +19,8 @@ public class PlayerController : MonoBehaviour, IAttackAnimationListener
     CharacterController controller;
     Animator animator;
     HealthSystem healthSystem;
-    [SerializeField] bool canDealDamage = false;
-    [SerializeField] bool isAttacking = false;
+    bool canDealDamage = false;
+    bool isAttacking = false;
     //in the future access to the player will be through proper game manager
     public static PlayerController Instance { get; private set; }
 

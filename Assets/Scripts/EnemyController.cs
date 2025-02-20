@@ -26,7 +26,7 @@ public class EnemyController : MonoBehaviour
         healthSystem = GetComponent<HealthSystem>();
         attackBehaviour = GetComponent<EnemyAttackBehaviour>();
 
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
 
         mover.Init(controller, animator);
         detector.Init(controller);
