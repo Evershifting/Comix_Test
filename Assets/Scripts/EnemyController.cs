@@ -1,3 +1,4 @@
+using System;
 using System.Reflection.Emit;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class EnemyController : MonoBehaviour
 
     [Header("Debug values")]
     [SerializeField] EnemyState enemyState;
-    
+
     //refs
     CharacterController controller;
     EnemyBehaviour enemyBehaviour;
@@ -31,17 +32,21 @@ public class EnemyController : MonoBehaviour
         mover.Init(controller, animator);
         detector.Init(controller);
         enemyBehaviour.Init(controller, attackBehaviour);
+        healthSystem.Init(Die);
     }
+
+
     private void Update()
     {
         target = detector.GetInfo();
-        EnemyAction enemyAction = enemyBehaviour.GetActions(target); //attack, move
+        EnemyAction enemyAction = enemyBehaviour.GetActions(target);
         switch (enemyAction.actionType)
         {
             case EnemyActionType.Move:
                 mover.Move(enemyAction.MovePosition);
                 break;
             case EnemyActionType.Attack:
+                attackBehaviour.Attack();
                 break;
             case EnemyActionType.Idle:
                 break;
@@ -53,6 +58,11 @@ public class EnemyController : MonoBehaviour
 
         //debug
         enemyState = enemyBehaviour.State;
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 }
 

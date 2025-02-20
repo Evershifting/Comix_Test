@@ -9,7 +9,7 @@ using UnityEngine.Rendering;
 public class PlayerController : MonoBehaviour, IAttackAnimationListener
 {
     [SerializeField] Mover mover;
-    #region it should be a weapon, that references damage collider and all the other stuff, but implementing weapon system is way too out of the scope even for me)
+    #region it should be a weapon weapon, that references damage collider and all the other stuff, but implementing weapon system is way too out of the scope even for me)
     [Space, Header("Weapon")]
     [SerializeField] DamageCollider damageCollider;
     [SerializeField] DamageStruct damageStruct;
