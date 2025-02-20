@@ -17,7 +17,6 @@ public class DamageCollider : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Collided with {other.gameObject.name}");
         if (other.gameObject.TryGetComponent(out HealthSystem targetHealthSystem))
         {
             if (potentialTargets.Intersect(targetHealthSystem.DamageableTargetTypes).Any())

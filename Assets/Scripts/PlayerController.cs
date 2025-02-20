@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour, IAttackAnimationListener
         healthSystem = GetComponent<HealthSystem>();
         GetComponentInChildren<AnimationHelper>()?.Init(this);
         healthSystem.Init(
-            () => { Debug.Log("PlayerController: Die"); },
+            () => { Debug.Log("PlayerController: Die"); Destroy(gameObject); },
             () => { Debug.Log("PlayerController: Hit taken"); }
             );
         mover.Init(controller, animator);

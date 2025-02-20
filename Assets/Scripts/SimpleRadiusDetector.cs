@@ -14,6 +14,8 @@ internal class SimpleRadiusDetector : Detector
     {
         if (player == null)
         {
+            if (PlayerController.Instance == null)
+                return null;
             player = PlayerController.Instance.transform;
         }
         if (Utils.CheckDistanceUsingX(player, characterController.transform, radius))

@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 1298131717211943774}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -315,7 +315,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1600501032307047626}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -19.98, y: -0.7900002, z: 0.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -381,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f204973974d5a9d4f884c5dd81f8264b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageableTargetTypes: 
+  damageableTargetTypes: 00000000
   maxHealth: 100
 --- !u!1 &1672401040585945849
 GameObject:
@@ -728,7 +728,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4542270011227178163, guid: 5a7378600c98fdf41ac33e9370316fa4, type: 3}
+  - {fileID: 2100000, guid: f7741a671b9a41c4c82d5806e3ff79a9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2195,7 +2195,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4542270011227178163, guid: 5a7378600c98fdf41ac33e9370316fa4, type: 3}
+  - {fileID: 2100000, guid: f7741a671b9a41c4c82d5806e3ff79a9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
